@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .switch-page {
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .switch-page:hover {
+            color: #4caf50;
+        }
+
+        .signup-container {
+            display: none;
+        }
+
+        .slide-up {
+            animation: slideUp 0.6s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(-100%);
+            }
+        }
+
+        .slide-down {
+            animation: slideDown 0.6s ease-out forwards;
+        }
+
+        @keyframes slideDown {
+            to {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="login-container">
+        <h1>Login</h1>
+        <form>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p class="switch-page" onclick="togglePage()">Don't have an account?<a href="./singup.html" style="text-decoration: none;"> Signup</a></p>
+    </div>
+
+    <div class="container signup-container" id="signup-container">
+        <h1>Signup</h1>
+        <form>
+            <label for="newUsername">Username:</label>
+            <input type="text" id="newUsername" name="newUsername" required>
+
+            <label for="newPassword">Password:</label>
+            <input type="password" id="newPassword" name="newPassword" required>
+
+            <button type="submit">Signup</button>
+        </form>
+
+        <p class="switch-page" onclick="togglePage()">Already have an account? Login</p>
+    </div>
+
+    <script>
+        function togglePage() {
+            const loginContainer = document.getElementById('login-container');
+            const signupContainer = document.getElementById('signup-container');
+
+            if (loginContainer.classList.contains('slide-down')) {
+                loginContainer.classList.remove('slide-down');
+                loginContainer.classList.add('slide-up');
+                signupContainer.classList.remove('slide-up');
+                signupContainer.classList.add('slide-down');
+            } else {
+                loginContainer.classList.remove('slide-up');
+                loginContainer.classList.add('slide-down');
+                signupContainer.classList.remove('slide-down');
+                signupContainer.classList.add('slide-up');
+            }
+        }
+    </script>
+</body>
+
+</html>
