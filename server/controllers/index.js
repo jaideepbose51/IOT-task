@@ -52,8 +52,19 @@ function isStrongPassword(password) {
   return true;
 }
 
+//email check
+function emailCheck(email) {
+// Check for @
+  if (!/[@]/.test(email)) {
+    return false;
+  }
+
+  // If all checks pass ie the email contains @ symbol
+  return true;
+}
+
 export const createUser = async (req, res) => {
-  if (isStrongPassword(req.body.password)) {
+  if (isStrongPassword(req.body.password)&&emailCheck(req.body.email)) {
     const user = { email: req.body.email, pass: req.body.password };
     console.log(user);
     try {
@@ -79,7 +90,7 @@ export const login = async (req, res) => {
     if (user) {
       console.log("User Successfully logged in");
     } else {
-      res.redirect("/user/register");
+      res.redirect("/singup");
       console.log("Incorrect Credentials");
     }
   } catch (error) {
